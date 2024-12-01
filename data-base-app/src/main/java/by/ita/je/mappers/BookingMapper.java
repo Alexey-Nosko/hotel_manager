@@ -1,5 +1,6 @@
 package by.ita.je.mappers;
 
+
 import by.ita.je.dto.BookingDto;
 import by.ita.je.models.Booking;
 import lombok.RequiredArgsConstructor;
@@ -9,25 +10,25 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BookingMapper {
 
-    private final ClientMapper clientMapper;
+    private final ProfileMapper profileMapper;
 
     public BookingDto toDto(Booking booking) {
-        if (booking == null) return null;
+        if (booking == null) {return null;}
         return BookingDto.builder()
                 .id(booking.getId())
                 .checkInDate(booking.getCheckInDate())
                 .checkOutDate(booking.getCheckOutDate())
-                .clientDto(clientMapper.toDto(booking.getClient()))
+                .profileDto(profileMapper.toDto(booking.getProfile()))
                 .build();
     }
 
-    public Booking toEntity(BookingDto bookingDto) {
-        if (bookingDto == null) return null;
+    public Booking toEntity(BookingDto dto) {
+        if (dto == null) {return null;}
         return Booking.builder()
-                .id(bookingDto.getId())
-                .checkInDate(bookingDto.getCheckInDate())
-                .checkOutDate(bookingDto.getCheckOutDate())
-                .client(clientMapper.toEntity(bookingDto.getClientDto()))
+                .id(dto.getId())
+                .checkInDate(dto.getCheckInDate())
+                .checkOutDate(dto.getCheckOutDate())
+                .profile(profileMapper.toEntity(dto.getProfileDto()))
                 .build();
     }
 }

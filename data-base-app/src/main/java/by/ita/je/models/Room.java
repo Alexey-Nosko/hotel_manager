@@ -21,13 +21,13 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
-    @Column(name = "roomNumber")
+    @Column(name = "room_number")
     private Integer roomNumber;
     @Column(name = "type")
     private String type;
-    @Column(name = "pricePerNight")
+    @Column(name = "price_per_night")
     private Integer pricePerNight;
-    @Column(name = "isAvailable")
+    @Column(name = "is_available")
     private Boolean isAvailable;
 
     @ManyToOne(cascade = CascadeType.ALL)

@@ -8,18 +8,20 @@ import org.springframework.stereotype.Component;
 public class SocialMapper {
 
     public SocialDto toDto(Social social) {
-        if (social == null) return null;
+        if (social == null) {return null;}
         return SocialDto.builder()
                 .id(social.getId())
+                .rating(social.getRating())
                 .followersCount(social.getFollowersCount())
                 .build();
     }
 
-    public Social toEntity(SocialDto socialDto) {
-        if (socialDto == null) return null;
+    public Social toEntity(SocialDto dto) {
+        if (dto == null) {return null;}
         return Social.builder()
-                .id(socialDto.getId())
-                .followersCount(socialDto.getFollowersCount())
+                .id(dto.getId())
+                .rating(dto.getRating())
+                .followersCount(dto.getFollowersCount())
                 .build();
     }
 }

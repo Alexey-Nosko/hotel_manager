@@ -13,26 +13,30 @@ public class RoomMapper {
     private final BookingMapper bookingMapper;
 
     public RoomDto toDto(Room room) {
-        if (room == null) return null;
+        if (room == null) {return null;}
         return RoomDto.builder()
                 .id(room.getId())
                 .roomNumber(room.getRoomNumber())
                 .type(room.getType())
                 .pricePerNight(room.getPricePerNight())
                 .isAvailable(room.getIsAvailable())
-                .bookingsDto(room.getBookings() != null ? room.getBookings().stream().map(bookingMapper::toDto).collect(Collectors.toList()) : null)
+                .bookingsDto(room.getBookings().stream()
+                        .map(bookingMapper::toDto)
+                        .collect(Collectors.toList()))
                 .build();
     }
 
-    public Room toEntity(RoomDto roomDto) {
-        if (roomDto == null) return null;
+    public Room toEntity(RoomDto dto) {
+        if (dto == null) {return null;}
         return Room.builder()
-                .id(roomDto.getId())
-                .roomNumber(roomDto.getRoomNumber())
-                .type(roomDto.getType())
-                .pricePerNight(roomDto.getPricePerNight())
-                .isAvailable(roomDto.getIsAvailable())
-                .bookings(roomDto.getBookingsDto() != null ? roomDto.getBookingsDto().stream().map(bookingMapper::toEntity).collect(Collectors.toList()) : null)
+                .id(dto.getId())
+                .roomNumber(dto.getRoomNumber())
+                .type(dto.getType())
+                .pricePerNight(dto.getPricePerNight())
+                .isAvailable(dto.getIsAvailable())
+                .bookings(dto.getBookingsDto().stream()
+                        .map(bookingMapper::toEntity)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

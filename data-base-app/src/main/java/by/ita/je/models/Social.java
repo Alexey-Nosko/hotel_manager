@@ -20,7 +20,9 @@ public class Social {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
-    @Column(name = "followersCount")
+    @Column(name = "rating")
+    private Double rating;
+    @Column(name = "followers_count")
     private Long followersCount;
 
     @OneToOne(cascade = CascadeType.ALL)

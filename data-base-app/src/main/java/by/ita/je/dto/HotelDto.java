@@ -17,8 +17,6 @@ public class HotelDto {
 
     private String name;
 
-    private Double rating;
-
     private String location;
 
     private String description;
@@ -29,7 +27,7 @@ public class HotelDto {
 
     private AmenitiesDto amenitiesDto;
 
-    private ManagerDto managerDto;
-
     private SocialDto socialDto;
+
+    private List<ProfileDto> profilesDto;
 }

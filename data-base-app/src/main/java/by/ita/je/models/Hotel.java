@@ -22,13 +22,11 @@ public class Hotel {
     private UUID id;
     @Column(name = "name")
     private String name;
-    @Column(name = "rating")
-    private Double rating;
     @Column(name = "location")
     private String location;
     @Column(name = "description")
     private String description;
-    @Column(name = "periodOfWork")
+    @Column(name = "period_of_work")
     private String periodOfWork;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
@@ -38,8 +36,8 @@ public class Hotel {
     private Amenities amenities;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Manager manager;
-
-    @OneToOne(cascade = CascadeType.ALL)
     private Social social;
+
+    @OneToMany(mappedBy = "hotel")
+    private List<Profile> profiles;
 }

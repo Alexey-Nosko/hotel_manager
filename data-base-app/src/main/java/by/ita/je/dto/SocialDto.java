@@ -15,5 +15,7 @@ public class SocialDto {
 
     private UUID id;
 
+    private Double rating;
+
     private Long followersCount;
 }

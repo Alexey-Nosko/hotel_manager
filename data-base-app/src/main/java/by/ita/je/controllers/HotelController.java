@@ -9,6 +9,7 @@ import by.ita.je.services.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController()
@@ -27,9 +28,9 @@ public class HotelController {
         hotelService.create(hotel);
     }
 
-    @GetMapping("/read/{uuid}")
-    public HotelDto read(Hotel hotel) {
-        return hotelMapper.toDto(hotelService.read(hotel.getId()));
+    @GetMapping("/read/{id}")
+    public HotelDto read(@PathVariable UUID id) {
+        return hotelMapper.toDto(hotelService.read(id));
     }
 
     @GetMapping("/read/all")
@@ -46,7 +47,6 @@ public class HotelController {
         Hotel hotel = hotelMapper.toEntity(hotelDto);
 
         hotel.setName(hotelDto.getName());
-        hotel.setRating(hotelDto.getRating());
         hotel.setLocation(hotelDto.getLocation());
         hotel.setDescription(hotelDto.getDescription());
         hotel.setPeriodOfWork(hotelDto.getPeriodOfWork());
@@ -61,12 +61,8 @@ public class HotelController {
     }
 
     @DeleteMapping("/delete/{uuid}")
-    public HotelDto delete(HotelDto hotelDto){
-
-        Hotel hotel = hotelMapper.toEntity(hotelDto);
-        Hotel deletedHotel = hotelService.delete(hotel.getId());
-        HotelDto deletedHotelDto = hotelMapper.toDto(deletedHotel);
-        return deletedHotelDto;
+    public void delete(@PathVariable UUID uuid) {
+       hotelService.delete(uuid);
     }
 
     @DeleteMapping("/delete/all")
@@ -74,4 +70,13 @@ public class HotelController {
         hotelService.deleteAll();
     }
 
+    @GetMapping("/read/all/sorted")
+    public List<HotelDto> getSortedHotels(@RequestParam(defaultValue = "name") String sortBy) {
+
+        List<Hotel> hotels = hotelService.getSortedHotels(sortBy);
+
+        return hotels.stream()
+                .map(hotelMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }

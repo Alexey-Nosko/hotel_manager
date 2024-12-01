@@ -24,7 +24,7 @@ public class Amenities {
     private Boolean wifi;
     @Column(name = "pool")
     private Boolean pool;
-    @Column(name = "airConditioner")
+    @Column(name = "air_conditioner")
     private Boolean airConditioner;
     @Column(name = "parking")
     private  Boolean parking;

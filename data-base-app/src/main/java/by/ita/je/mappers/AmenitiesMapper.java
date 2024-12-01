@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class AmenitiesMapper {
 
     public AmenitiesDto toDto(Amenities amenities) {
-        if (amenities == null) return null;
+        if (amenities == null) {return null;}
         return AmenitiesDto.builder()
                 .id(amenities.getId())
                 .wifi(amenities.getWifi())
@@ -18,14 +18,14 @@ public class AmenitiesMapper {
                 .build();
     }
 
-    public Amenities toEntity(AmenitiesDto amenitiesDto) {
-        if (amenitiesDto == null) return null;
+    public Amenities toEntity(AmenitiesDto dto) {
+        if (dto == null) {return null;}
         return Amenities.builder()
-                .id(amenitiesDto.getId())
-                .wifi(amenitiesDto.getWifi())
-                .pool(amenitiesDto.getPool())
-                .airConditioner(amenitiesDto.getAirConditioner())
-                .parking(amenitiesDto.getParking())
+                .id(dto.getId())
+                .wifi(dto.getWifi())
+                .pool(dto.getPool())
+                .airConditioner(dto.getAirConditioner())
+                .parking(dto.getParking())
                 .build();
     }
 }

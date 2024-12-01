@@ -1,5 +1,6 @@
 package by.ita.je.mappers;
 
+
 import by.ita.je.dto.HotelDto;
 import by.ita.je.models.Hotel;
 import lombok.RequiredArgsConstructor;
@@ -12,38 +13,44 @@ public class HotelMapper {
 
     private final RoomMapper roomMapper;
     private final AmenitiesMapper amenitiesMapper;
-    private final ManagerMapper managerMapper;
     private final SocialMapper socialMapper;
+    private final ProfileMapper profileMapper;
 
     public HotelDto toDto(Hotel hotel) {
-        if (hotel == null) return null;
+        if (hotel == null) {return null;}
         return HotelDto.builder()
                 .id(hotel.getId())
                 .name(hotel.getName())
-                .rating(hotel.getRating())
                 .location(hotel.getLocation())
                 .description(hotel.getDescription())
                 .periodOfWork(hotel.getPeriodOfWork())
-                .roomsDto(hotel.getRooms() != null ? hotel.getRooms().stream().map(roomMapper::toDto).collect(Collectors.toList()) : null)
+                .roomsDto(hotel.getRooms().stream()
+                        .map(roomMapper::toDto)
+                        .collect(Collectors.toList()))
                 .amenitiesDto(amenitiesMapper.toDto(hotel.getAmenities()))
-                .managerDto(managerMapper.toDto(hotel.getManager()))
                 .socialDto(socialMapper.toDto(hotel.getSocial()))
+                .profilesDto(hotel.getProfiles().stream()
+                        .map(profileMapper::toDto)
+                        .collect(Collectors.toList()))
                 .build();
     }
 
-    public Hotel toEntity(HotelDto hotelDto) {
-        if (hotelDto == null) return null;
+    public Hotel toEntity(HotelDto dto) {
+        if (dto == null) {return null;}
         return Hotel.builder()
-                .id(hotelDto.getId())
-                .name(hotelDto.getName())
-                .rating(hotelDto.getRating())
-                .location(hotelDto.getLocation())
-                .description(hotelDto.getDescription())
-                .periodOfWork(hotelDto.getPeriodOfWork())
-                .rooms(hotelDto.getRoomsDto() != null ? hotelDto.getRoomsDto().stream().map(roomMapper::toEntity).collect(Collectors.toList()) : null)
-                .amenities(amenitiesMapper.toEntity(hotelDto.getAmenitiesDto()))
-                .manager(managerMapper.toEntity(hotelDto.getManagerDto()))
-                .social(socialMapper.toEntity(hotelDto.getSocialDto()))
+                .id(dto.getId())
+                .name(dto.getName())
+                .location(dto.getLocation())
+                .description(dto.getDescription())
+                .periodOfWork(dto.getPeriodOfWork())
+                .rooms(dto.getRoomsDto().stream()
+                        .map(roomMapper::toEntity)
+                        .collect(Collectors.toList()))
+                .amenities(amenitiesMapper.toEntity(dto.getAmenitiesDto()))
+                .social(socialMapper.toEntity(dto.getSocialDto()))
+                .profiles(dto.getProfilesDto().stream()
+                        .map(profileMapper::toEntity)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }
