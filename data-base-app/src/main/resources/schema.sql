@@ -63,10 +63,9 @@ CREATE TABLE NOTIFICATION (
 
 CREATE TABLE profile_favorite_hotels (
     profile_id UUID,
-    favorite_hotels_id UUID,
-    PRIMARY KEY (profile_id, favorite_hotels_id),
-    FOREIGN KEY (profile_id) REFERENCES PROFILE(id) ON DELETE CASCADE,
-    FOREIGN KEY (favorite_hotels_id) REFERENCES HOTEL(id) ON DELETE CASCADE
+    favorite_hotels UUID,
+    PRIMARY KEY (profile_id),
+    FOREIGN KEY (profile_id) REFERENCES PROFILE(id) ON DELETE CASCADE
 );
 
 ALTER TABLE HOTEL ADD COLUMN amenities_id UUID;
@@ -93,16 +92,18 @@ REFERENCES PROFILE(id) ON DELETE CASCADE ON UPDATE CASCADE;
 INSERT INTO HOTEL (id, name, location, description, period_of_work,amenities_id,social_id)
 VALUES
 ('f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6', 'Sunset Resort', 'Miami, FL', 'A luxury hotel with stunning ocean views', 'All year round',NULL,NULL),
-('e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b', 'AAAA', 'zzzzz, FL', 'A luxury hotel with stunning ocean views', 'All year round',NULL,NULL);
+('e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b', 'Marriott', 'Minsk, RB', 'Hotel with exquisite rooms and excellent service', 'All year round',NULL,NULL);
 
 
 INSERT INTO AMENITIES (id, wifi, pool, air_conditioner, parking, hotel_id)
 VALUES
-('d7f7a8d3-56b7-47bb-9a57-1de1167a9cc0', TRUE, TRUE, TRUE, TRUE, 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6');
+('d7f7a8d3-56b7-47bb-9a57-1de1167a9cc0', FALSE, TRUE, TRUE, TRUE, 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6'),
+('2f1c30a0-3e25-4ae4-b3aa-637b9eaa40f4', TRUE, TRUE, TRUE, TRUE, 'e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b');
 
 INSERT INTO SOCIAL (id, rating, followers_count, hotel_id)
 VALUES
-('44e3bbf8-81ec-46a9-88c3-9c9eb3d2d801', 4.8, 1, 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6');
+('44e3bbf8-81ec-46a9-88c3-9c9eb3d2d801', 4.8, 1, 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6'),
+('9b71214c-64da-4e3b-8bc6-c920e8f84e12', 4.0, 0, 'e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b');
 
 INSERT INTO ROOM (id, room_number, type, price_per_night, is_available, hotel_id)
     VALUES
@@ -119,7 +120,7 @@ VALUES
 ('39ab36f5-7487-465d-bcc2-6f91a4b3e3f7', 'Manager', 'Alice Smith', 'manag', 'pas', 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6', NULL),
 ('d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de', 'Client', 'Alex Nosko', 'al', '123', NULL, 'b5ac98f0-7d58-475e-913d-efb51fa9d52b');
 
-INSERT INTO profile_favorite_hotels (profile_id, favorite_hotels_id)
+INSERT INTO profile_favorite_hotels (profile_id, favorite_hotels)
 VALUES
 ('d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de', 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6');
 
@@ -130,6 +131,14 @@ WHERE id = 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6';
 UPDATE HOTEL
 SET social_id = '44e3bbf8-81ec-46a9-88c3-9c9eb3d2d801'
 WHERE id = 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6';
+
+UPDATE HOTEL
+SET amenities_id = '2f1c30a0-3e25-4ae4-b3aa-637b9eaa40f4'
+WHERE id = 'e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b';
+
+UPDATE HOTEL
+SET social_id = '9b71214c-64da-4e3b-8bc6-c920e8f84e12'
+WHERE id = 'e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b';
 
 UPDATE BOOKING
 SET profile_id = 'd9d2e0a5-8cf4-44bc-8a35-c11abf5a50de'
