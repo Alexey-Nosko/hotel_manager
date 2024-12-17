@@ -253,7 +253,7 @@ public class BusinessService {
         finalRating = (finalRating + hotelEvaluation)/2;
         hotel.getSocial().setRating(finalRating);
 
-        restTemplate.put("/social/update/rate/hotel",hotelMapper.toDto(hotel));
+        restTemplate.put("/social/update/rate/hotel",hotelMapper.toDto(hotel),HotelDto.class);
     }
 
     public void bookmarkHotel(String hotelName, String login) {

@@ -46,9 +46,11 @@ public class SocialService {
     }
 
     public void rateHotel(Hotel hotel) {
-        Social social = hotel.getSocial();
+        Social social = socialRepository.findById(hotel.getSocial().getId())
+                .orElseThrow(() -> new RuntimeException("Social not found"));
 
-        social.setHotel(hotel);
+
+        social.setRating(hotel.getSocial().getRating());
 
         socialRepository.save(social);
     }

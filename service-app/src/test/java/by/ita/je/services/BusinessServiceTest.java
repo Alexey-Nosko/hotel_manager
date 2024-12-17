@@ -312,7 +312,7 @@ class BusinessServiceTest extends TestUtils {
 
         businessService.rateHotel(hotelName, hotelEvaluation);
 
-        verify(restTemplate).put(eq("/social/update/rate/hotel"), eq(hotelDto));
+        verify(restTemplate).put(eq("/social/update/rate/hotel"), eq(hotelDto),eq(HotelDto.class));
         assertEquals(3.5, hotel.getSocial().getRating());
     }
 
