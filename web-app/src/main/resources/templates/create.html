@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Hotel</title>
+</head>
+<body>
+<h1>Create Hotel</h1>
+<form action="/hotel/create" method="post" id="hotelForm">
+
+  <h2>Hotel Information</h2>
+  <label for="name">Hotel Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="location">Location:</label>
+  <input type="text" id="location" name="location" required><br><br>
+
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" required></textarea><br><br>
+
+  <label for="periodOfWork">Period of Work:</label>
+  <input type="text" id="periodOfWork" name="periodOfWork" required><br><br>
+
+  <h2>Amenities</h2>
+  <label><input type="checkbox" id="wifi" name="amenities.wifi" value="true"> WiFi</label><br>
+  <label><input type="checkbox" id="pool" name="amenities.pool" value="true"> Pool</label><br>
+  <label><input type="checkbox" id="airConditioner" name="amenities.airConditioner" value="true"> Air Conditioner</label><br>
+  <label><input type="checkbox" id="parking" name="amenities.parking" value="true"> Parking</label><br><br>
+
+  <h2>Social Information</h2>
+  <label for="rating">Rating:</label>
+  <input type="number" step="0.1" id="rating" name="social.rating" required><br><br>
+
+  <label for="followersCount">Followers Count:</label>
+  <input type="number" id="followersCount" name="social.followersCount" required><br><br>
+
+  <h2>Rooms</h2>
+  <div id="roomsContainer">
+
+  </div>
+  <button type="button" id="addRoomButton">Add Room</button><br><br>
+
+  <button type="submit">Create Hotel</button>
+
+</form>
+
+<script>
+  const roomsContainer = document.getElementById('roomsContainer');
+  const addRoomButton = document.getElementById('addRoomButton');
+
+  addRoomButton.addEventListener('click', () => {
+      const roomIndex = roomsContainer.children.length; // Index for the new room
+
+      const roomDiv = document.createElement('div');
+      roomDiv.classList.add('room');
+      roomDiv.innerHTML = `
+          <h3>Room ${roomIndex + 1}</h3>
+          <label for="roomNumber${roomIndex}">Room Number:</label>
+          <input type="number" id="roomNumber${roomIndex}" name="rooms[${roomIndex}].roomNumber" required><br>
+
+          <label for="roomType${roomIndex}">Type:</label>
+          <select id="roomType${roomIndex}" name="rooms[${roomIndex}].type" required>
+              <option value="Single">Single</option>
+              <option value="Double">Double</option>
+          </select><br>
+
+          <label for="pricePerNight${roomIndex}">Price Per Night:</label>
+          <input type="number" id="pricePerNight${roomIndex}" name="rooms[${roomIndex}].pricePerNight" required><br>
+
+          <label for="isAvailable${roomIndex}">Is Available:</label>
+          <input type="checkbox" id="isAvailable${roomIndex}" name="rooms[${roomIndex}].isAvailable"><br><br>
+      `;
+
+      roomsContainer.appendChild(roomDiv);
+  });
+</script>
+
+<a href="/hotel/start">Back to home page</a>
+
+</body>
+</html>

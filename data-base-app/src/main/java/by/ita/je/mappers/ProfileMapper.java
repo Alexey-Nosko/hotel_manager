@@ -4,7 +4,7 @@ import by.ita.je.dto.ProfileDto;
 import by.ita.je.models.Profile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,10 +21,12 @@ public class ProfileMapper {
                 .name(profile.getName())
                 .login(profile.getLogin())
                 .password(profile.getPassword())
+                .balance(profile.getBalance())
                 .favoriteHotels(profile.getFavoriteHotels())
-                .notificationsDto(profile.getNotifications().stream()
-                        .map(notificationMapper::toDto)
-                        .collect(Collectors.toList()))
+                .notificationsDto(profile.getNotifications() != null ?
+                        profile.getNotifications().stream()
+                                .map(notificationMapper::toDto)
+                                .collect(Collectors.toList()) : Collections.emptyList())
                 .build();
     }
 
@@ -36,10 +38,12 @@ public class ProfileMapper {
                 .name(dto.getName())
                 .login(dto.getLogin())
                 .password(dto.getPassword())
+                .balance(dto.getBalance())
                 .favoriteHotels(dto.getFavoriteHotels())
-                .notifications(dto.getNotificationsDto().stream()
-                        .map(notificationMapper::toEntity)
-                        .collect(Collectors.toList()))
+                .notifications(dto.getNotificationsDto() != null ?
+                        dto.getNotificationsDto().stream()
+                                .map(notificationMapper::toEntity)
+                                .collect(Collectors.toList()) : Collections.emptyList())
                 .build();
     }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel reservation</title>
+</head>
+<body>
+<h1>Cancel reservation</h1>
+<form action="/hotel/get/booking/Cancellation" method="get">
+    <label for="name">Hotel name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="clientName">client Name:</label><br>
+    <input type="text" id="clientName" name="clientName" required><br><br>
+    <button type="submit">Cancel reservation</button>
+</form>
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>

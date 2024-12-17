@@ -23,7 +23,7 @@ public class Social {
     @Column(name = "rating")
     private Double rating;
     @Column(name = "followers_count")
-    private Long followersCount;
+    private Integer followersCount;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Hotel hotel;

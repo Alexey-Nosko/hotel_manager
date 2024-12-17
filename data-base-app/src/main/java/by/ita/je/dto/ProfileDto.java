@@ -24,6 +24,8 @@ public class ProfileDto {
 
     private String password;
 
+    private Double balance;
+
     private Set<UUID> favoriteHotels;
 
     private List<NotificationDto> notificationsDto;

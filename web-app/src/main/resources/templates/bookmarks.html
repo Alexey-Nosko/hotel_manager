@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmarks</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .hotel {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .hotel h2 {
+        margin: 0 0 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>Bookmarked hotels</h1>
+<div th:each="hotel : ${hotels}" class="hotel">
+  <h2 th:text="${hotel.name}">Hotel Name</h2>
+  <p><strong>Location:</strong> <span th:text="${hotel.location}">Location</span></p>
+  <p><strong>Description:</strong> <span th:text="${hotel.description}">Description</span></p>
+  <p><strong>Period of Work:</strong> <span th:text="${hotel.periodOfWork}">Period</span></p>
+
+  <h3>Amenities:</h3>
+  <ul>
+    <li>Wi-Fi: <span th:text="${hotel.amenities.wifi ? 'Yes' : 'No'}">Yes/No</span></li>
+    <li>Pool: <span th:text="${hotel.amenities.pool ? 'Yes' : 'No'}">Yes/No</span></li>
+    <li>Air Conditioner: <span th:text="${hotel.amenities.airConditioner ? 'Yes' : 'No'}">Yes/No</span></li>
+    <li>Parking: <span th:text="${hotel.amenities.parking ? 'Yes' : 'No'}">Yes/No</span></li>
+  </ul>
+
+  <h3>Rooms:</h3>
+  <ul th:each="room : ${hotel.rooms}">
+    <li>
+      Room <span th:text="${room.roomNumber}">Number</span>:
+      <strong th:text="${room.type}">Type</strong>,
+      <span th:text="${room.pricePerNight}">Price</span> per night,
+      <span th:text="${room.isAvailable ? 'Available' : 'Not Available'}">Availability</span>
+    </li>
+  </ul>
+
+  <h3>Profiles:</h3>
+  <ul th:each="profile : ${hotel.profiles}">
+    <li>
+      <strong th:text="${profile.name}">Name</strong> -
+      <span th:text="${profile.role}">Role</span>,
+      Balance: <span th:text="${profile.balance}">Balance</span>
+    </li>
+  </ul>
+
+  <h3>Social:</h3>
+  <p>Rating: <span th:text="${hotel.social.rating}">Rating</span></p>
+  <p>Followers: <span th:text="${hotel.social.followersCount}">Count</span></p>
+</div>
+
+<a href="/hotel/start">Back to home page</a>
+
+</body>
+</html>

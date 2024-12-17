@@ -1,5 +1,6 @@
 package by.ita.je.services;
 
+import by.ita.je.models.Hotel;
 import by.ita.je.models.Room;
 import by.ita.je.repositories.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,30 @@ public class RoomService {
 
     public void deleteAll() {
         roomRepository.deleteAll();
+    }
+
+    public Room bookingCancellation(UUID id, Hotel hotel) {
+
+        Room roomToUpdate = hotel.getRooms().stream()
+                .filter(room -> room.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Комната с ID " + id + " не найдена"));
+
+        roomToUpdate.setHotel(hotel);
+
+        return roomRepository.save(roomToUpdate);
+    }
+
+    public Room changeHotelRoomConfiguration(UUID id, Hotel hotel) {
+        Room roomToUpdate = hotel.getRooms().stream()
+                .filter(room -> room.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Комната с ID " + id + " не найдена"));
+
+        roomToUpdate.setHotel(hotel);
+
+        hotel.getRooms().forEach(room -> room.setHotel(hotel));
+
+        return roomRepository.save(roomToUpdate);
     }
 }

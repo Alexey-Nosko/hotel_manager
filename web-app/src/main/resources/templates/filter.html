@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Filter</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input, select, button {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+  <script>
+    function handleSubmit(event) {
+      let form = event.target;
+      let nameField = form.querySelector('input[name="name"]');
+      let locationField = form.querySelector('input[name="location"]');
+
+      if (nameField.value.trim() === "") {
+        nameField.removeAttribute('name');
+      }
+      if (locationField.value.trim() === "") {
+        locationField.removeAttribute('name');
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Filter Hotels</h1>
+<form th:action="@{/hotel/hotels/filter}" method="post" onsubmit="handleSubmit(event)">
+
+  <div class="form-group">
+    <label for="name">Hotel Name</label>
+    <input type="text" id="name" name="name" placeholder="Enter hotel name">
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" placeholder="Enter location">
+  </div>
+  <div class="form-group">
+    <label for="minRating">Minimum Rating</label>
+    <input type="number" id="minRating" name="minRating" step="0.1" min="0" max="5" placeholder="Enter minimum rating">
+  </div>
+  <div class="form-group">
+    <label for="wifi">Wi-Fi</label>
+    <select id="wifi" name="wifi">
+      <option value="">Any</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="pool">Pool</label>
+    <select id="pool" name="pool">
+      <option value="">Any</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="airConditioner">Air Conditioner</label>
+    <select id="airConditioner" name="airConditioner">
+      <option value="">Any</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="parking">Parking</label>
+    <select id="parking" name="parking">
+      <option value="">Any</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+  <button type="submit">Filter</button>
+</form>
+
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>

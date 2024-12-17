@@ -1,11 +1,15 @@
 package by.ita.je.controllers;
 
 import by.ita.je.dto.BookingDto;
+import by.ita.je.dto.HotelDto;
 import by.ita.je.mappers.BookingMapper;
+import by.ita.je.mappers.HotelMapper;
 import by.ita.je.models.Booking;
 import by.ita.je.services.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +20,7 @@ public class BookingController {
 
     private final BookingService bookingService;
     private final BookingMapper bookingMapper;
-
+    private final HotelMapper hotelMapper;
 
     @PostMapping("/create")
     public void create(@RequestBody BookingDto bookingDto){
@@ -53,5 +57,20 @@ public class BookingController {
     @DeleteMapping("/delete/all")
     public void deleteAll() {
         bookingService.deleteAll();
+    }
+
+    @PutMapping("update/booking/for/room/{id}")
+    public void updateBookingForRoom(@PathVariable UUID id,
+                                     @RequestBody HotelDto hotelDto){
+
+        bookingService.updateBookingsForRoom(id,hotelMapper.toEntity(hotelDto));
+    }
+
+    @PostMapping("book/room")
+    public void bookRoom(@RequestParam String login,@RequestParam String hotelName,
+                         @RequestParam Integer roomNumber, @RequestParam LocalDate checkInDate,
+                         @RequestParam LocalDate checkOutDate){
+
+        bookingService.bookRoom(login, hotelName, roomNumber, checkInDate, checkOutDate);
     }
 }

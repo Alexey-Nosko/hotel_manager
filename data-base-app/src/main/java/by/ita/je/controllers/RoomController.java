@@ -1,6 +1,8 @@
 package by.ita.je.controllers;
 
+import by.ita.je.dto.HotelDto;
 import by.ita.je.dto.RoomDto;
+import by.ita.je.mappers.HotelMapper;
 import by.ita.je.mappers.RoomMapper;
 import by.ita.je.models.Room;
 import by.ita.je.services.RoomService;
@@ -16,6 +18,7 @@ public class RoomController {
 
     private final RoomService roomService;
     private final RoomMapper roomMapper;
+    private final HotelMapper hotelMapper;
 
     @PostMapping("/create")
     public void create(@RequestBody RoomDto roomDto){
@@ -52,5 +55,15 @@ public class RoomController {
     @DeleteMapping("/delete/all")
     public void deleteAll() {
         roomService.deleteAll();
+    }
+
+    @PutMapping("/update/booking/cancellation/{uuid}")
+    public void bookingCancellation(@PathVariable UUID uuid, @RequestBody HotelDto hotelDto){
+        roomService.bookingCancellation(uuid,hotelMapper.toEntity(hotelDto));
+    }
+
+    @PutMapping("/update/change/configuration/{uuid}")
+    public void changeHotelRoomConfiguration(@PathVariable UUID uuid, @RequestBody HotelDto hotelDto){
+        roomService.changeHotelRoomConfiguration(uuid,hotelMapper.toEntity(hotelDto));
     }
 }

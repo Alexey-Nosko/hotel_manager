@@ -1,5 +1,6 @@
 package by.ita.je.services;
 
+import by.ita.je.models.Hotel;
 import by.ita.je.models.Social;
 import by.ita.je.repositories.SocialRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,13 @@ public class SocialService {
 
     public void deleteAll() {
         socialRepository.deleteAll();
+    }
+
+    public void rateHotel(Hotel hotel) {
+        Social social = hotel.getSocial();
+
+        social.setHotel(hotel);
+
+        socialRepository.save(social);
     }
 }

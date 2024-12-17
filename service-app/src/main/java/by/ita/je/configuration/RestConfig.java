@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfig {
 
-    private static final String DATA_BASE_APP_URL = "http://localhost:8101/database/hotel";
+    private static final String DATA_BASE_APP_URL = "http://nginx/database";
 
     @Bean
     public RestTemplate dataBaseAppClient() {

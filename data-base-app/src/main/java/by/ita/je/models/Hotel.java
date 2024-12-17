@@ -20,7 +20,7 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
     @Column(name = "location")
     private String location;
@@ -33,9 +33,11 @@ public class Hotel {
     private List<Room> rooms;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "amenities_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Amenities amenities;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "social_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Social social;
 
     @OneToMany(mappedBy = "hotel")

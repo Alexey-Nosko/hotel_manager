@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Booked Rooms</title>
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+    }
+    table, th, td {
+        border: 1px solid #dddddd;
+    }
+    th, td {
+        padding: 12px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-4">
+  <h1 class="text-center">Booked Rooms</h1>
+
+  <div th:if="${rooms != null}">
+    <table>
+      <thead>
+      <tr>
+        <th>Room Number</th>
+        <th>Type</th>
+        <th>Price per Night</th>
+        <th>Availability</th>
+        <th>Bookings</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="room : ${rooms}">
+        <td th:text="${room.roomNumber}"></td>
+        <td th:text="${room.type}"></td>
+        <td th:text="${room.pricePerNight} + ' $'"></td>
+        <td th:text="${room.isAvailable ? 'Available' : 'Booked'}"></td>
+        <td>
+          <ul>
+            <li th:each="booking : ${room.bookings}">
+              <span>Check-in: <span th:text="${booking.checkInDate}"></span></span>,
+              <span>Check-out: <span th:text="${booking.checkOutDate}"></span></span>,
+              <span>Booked by: <span th:text="${booking.profile.name}"></span></span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div th:if="${rooms == null}">
+    <h3 class="text-center text-danger" th:text="${error}"></h3>
+  </div>
+</div>
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>

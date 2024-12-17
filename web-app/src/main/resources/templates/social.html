@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Social Info</title>
+</head>
+<body>
+<h1>Hotel Social Info</h1>
+<div>
+  <h2>Hotel: <span th:text="${hotel.name}"></span></h2>
+  <p><strong>Rating:</strong> <span th:text="${hotel.social.rating}"></span></p>
+  <p><strong>Followers Count:</strong> <span th:text="${hotel.social.followersCount}"></span></p>
+</div>
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>

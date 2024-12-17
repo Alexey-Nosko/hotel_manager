@@ -1,0 +1,1813 @@
+{
+	"info": {
+		"_postman_id": "f1ce9543-8165-41c9-b997-286e7c742e9b",
+		"name": "Hotel manager collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37664052"
+	},
+	"item": [
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Grand Hotel\",\r\n  \"location\": \"New York, USA\",\r\n  \"description\": \"A luxurious hotel in the heart of the city\",\r\n  \"periodOfWork\": \"24/7\",\r\n  \"rooms\": [],\r\n  \"amenities\": null,\r\n  \"social\": null,\r\n  \"profiles\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/read/f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"read",
+								"f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/delete/f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"delete",
+								"f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findHotelByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/find/by/name?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"find",
+								"by",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filtr",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/hotels/filter?minRating=4.5&location=Miami, FL",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"hotels",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "wifi",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "pool",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "minRating",
+									"value": "4.5"
+								},
+								{
+									"key": "name",
+									"value": "Sunset Resort",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "Miami, FL"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteByName",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/delete/by/name?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"delete",
+								"by",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update/by/name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Grand Hotel\",\r\n  \"location\": \"New York, USA\",\r\n  \"description\": \"A luxurious hotel in the heart of the city\",\r\n  \"periodOfWork\": \"24/7\",\r\n  \"rooms\": [],\r\n  \"amenities\": null,\r\n  \"social\": null,\r\n  \"profiles\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8101/database/hotel/update/by/name?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"hotel",
+								"update",
+								"by",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Amenities",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/amenities/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"amenities",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/amenities/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"amenities",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/amenities/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"amenities",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/amenities/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"amenities",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/amenities/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"amenities",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/amenities/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"amenities",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/booking/book/room?login=al&hotelName=Sunset Resort&roomNumber=102&checkInDate=2024-12-10&checkOutDate=2024-12-15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"booking",
+								"book",
+								"room"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								},
+								{
+									"key": "hotelName",
+									"value": "Sunset Resort"
+								},
+								{
+									"key": "roomNumber",
+									"value": "102"
+								},
+								{
+									"key": "checkInDate",
+									"value": "2024-12-10"
+								},
+								{
+									"key": "checkOutDate",
+									"value": "2024-12-15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/notification/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"notification",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/notification/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"notification",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/notification/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"notification",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/notification/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"notification",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/notification/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"notification",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/notification/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"notification",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByLoginAndPassword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/get/by/login/password?login=admin&password=adminpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"get",
+								"by",
+								"login",
+								"password"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "adminpassword"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByLogin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/find?login=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"find"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFavoriteHotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/favorite/hotels?profileId=d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de&hotelId=e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"favorite",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "profileId",
+									"value": "d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de"
+								},
+								{
+									"key": "hotelId",
+									"value": "e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "passwordReset",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/password/reset?login=al&password=123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"password",
+								"reset"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "topUpBalance",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/profile/top/up/balance?login=al&balance=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"profile",
+								"top",
+								"up",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								},
+								{
+									"key": "balance",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/room/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"room",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/room/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"room",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/room/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"room",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/room/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"room",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/room/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"room",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/room/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"room",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Social",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/social/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"social",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/social/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"social",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/social/read/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"social",
+								"read",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/social/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"social",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/social/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"social",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete/all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8101/database/social/delete/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"database",
+								"social",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Business",
+			"item": [
+				{
+					"name": "findByLoginAndPassword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/get/by/login/password?login=admin&password=adminpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"get",
+								"by",
+								"login",
+								"password"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "adminpassword"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create/hotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Grand Hotel\",\r\n  \"location\": \"New York, USA\",\r\n  \"description\": \"A luxurious hotel in the heart of the city\",\r\n  \"periodOfWork\": \"24/7\",\r\n  \"rooms\": [],\r\n  \"amenities\": null,\r\n  \"social\": null,\r\n  \"profiles\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8111/business/hotel/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"hotel",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filtr",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/hotels/filter?minRating=4.5&location=Miami, FL&name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"hotels",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "minRating",
+									"value": "4.5"
+								},
+								{
+									"key": "location",
+									"value": "Miami, FL"
+								},
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findHotelByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/hotel/find/by/name?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"hotel",
+								"find",
+								"by",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "viewAvailableRooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/hotel/view/available/rooms?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"hotel",
+								"view",
+								"available",
+								"rooms"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "viewBookedRooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/hotel/view/booked/rooms?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"hotel",
+								"view",
+								"booked",
+								"rooms"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingCancellation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/booking/cancellation?name=Sunset Resort&clientName=Alex Nosko",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"booking",
+								"cancellation"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								},
+								{
+									"key": "clientName",
+									"value": "Alex Nosko"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeHotelRoomConfiguration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": null,\r\n  \"roomNumber\": 101,\r\n  \"type\": \"single\",\r\n  \"pricePerNight\": 10,\r\n  \"isAvailable\": true,\r\n  \"bookings\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8111/business/change/configuration?name=Sunset Resort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"change",
+								"configuration"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								},
+								{
+									"key": "roomNumber",
+									"value": "101",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rateHotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/rate/hotel?name=Sunset Resort&hotelEvaluation=4.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"rate",
+								"hotel"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sunset Resort"
+								},
+								{
+									"key": "hotelEvaluation",
+									"value": "4.0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientRegistration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": null,\r\n  \"role\": \"CLIENT\",\r\n  \"name\": \"max\",\r\n  \"login\": \"login\",\r\n  \"password\": \"password\",\r\n  \"balance\": null,\r\n  \"favoriteHotels\":[],\r\n  \"notifications\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8111/business/profile/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"profile",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByLogin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/find?login=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"find"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookmarkHotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/add/bookmark?name=Marriott&login=al",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"add",
+								"bookmark"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Marriott"
+								},
+								{
+									"key": "login",
+									"value": "al"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seeAllHotelsInBookmarks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/see/all/hotels/in/bookmarks?login=al",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"see",
+								"all",
+								"hotels",
+								"in",
+								"bookmarks"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "passwordReset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/password/reset?login=al&password=123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"password",
+								"reset"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								},
+								{
+									"key": "password",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "topUpBalance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/top/up/balance?login=al&balance=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"top",
+								"up",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								},
+								{
+									"key": "balance",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8111/business/book/room?login=al&hotelName=Sunset Resort&roomNumber=102&checkInDate=2024-12-10&checkOutDate=2024-12-15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8111",
+							"path": [
+								"business",
+								"book",
+								"room"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "al"
+								},
+								{
+									"key": "hotelName",
+									"value": "Sunset Resort"
+								},
+								{
+									"key": "roomNumber",
+									"value": "102"
+								},
+								{
+									"key": "checkInDate",
+									"value": "2024-12-10"
+								},
+								{
+									"key": "checkOutDate",
+									"value": "2024-12-15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

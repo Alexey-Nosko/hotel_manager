@@ -17,5 +17,5 @@ public class SocialDto {
 
     private Double rating;
 
-    private Long followersCount;
+    private Integer followersCount;
 }

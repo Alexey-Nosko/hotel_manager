@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<head>
+  <title>Home page</title>
+</head>
+<body>
+<h1>Welcome!</h1>
+
+<a th:href="@{/hotel/create}" class="button">Create a hotel</a><br>
+
+<a th:href="@{/hotel/read}" class="button">View hotel</a><br>
+
+<a th:href="@{/hotel/update}" class="button">Update hotel</a><br>
+
+<a th:href="@{/hotel/delete}" class="button">Delete hotel</a><br>
+
+<a th:href="@{/hotel/manager/registration}" class="button">Register a hotel manager</a><br>
+
+<br>
+
+<a th:href="@{/hotel/view/available/rooms}" class="button">View available rooms</a><br>
+
+<a th:href="@{/hotel/view/booked/rooms}" class="button">View booked rooms</a><br>
+
+<a th:href="@{/hotel/booking/cancellation}" class="button">Cancellation of booking</a><br>
+
+<a th:href="@{/hotel/change/configuration}" class="button">Change hotel room configuration</a><br>
+
+<br>
+
+<a th:href="@{/hotel/rate/hotel}" class="button">Rate the hotel</a><br>
+
+<a th:href="@{/hotel/add/bookmark}" class="button">Add hotel to bookmarks</a><br>
+
+<a th:href="@{/hotel/see/all/hotels/in/bookmarks}" class="button">View bookmarked hotels</a><br>
+
+<a th:href="@{/hotel/top/up/balance}" class="button">Top up your balance</a><br>
+
+<a th:href="@{/hotel/book/room}" class="button">Book a room</a><br>
+
+<br>
+
+<a th:href="@{/hotel/filter}" class="button">View hotels by filter</a><br>
+
+<a th:href="@{/hotel/social}" class="button">View the hotel's social block</a><br>
+
+<a th:href="@{/hotel/see/profile}" class="button">View my profile</a><br>
+
+<a th:href="@{/hotel/password/reset}" class="button">Change password</a><br>
+
+<br>
+
+<form th:action="@{/login(logout=true)}" method="post">
+  <button type="submit">Log out</button>
+</form>
+
+</body>
+</html>

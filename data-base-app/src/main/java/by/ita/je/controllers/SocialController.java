@@ -1,6 +1,8 @@
 package by.ita.je.controllers;
 
+import by.ita.je.dto.HotelDto;
 import by.ita.je.dto.SocialDto;
+import by.ita.je.mappers.HotelMapper;
 import by.ita.je.mappers.SocialMapper;
 import by.ita.je.models.Social;
 import by.ita.je.services.SocialService;
@@ -16,6 +18,7 @@ public class SocialController {
 
     private final SocialService socialService;
     private final SocialMapper socialMapper;
+    private final HotelMapper hotelMapper;
 
     @PostMapping("/create")
     public void create(@RequestBody SocialDto socialDto){
@@ -52,5 +55,11 @@ public class SocialController {
     @DeleteMapping("/delete/all")
     public void deleteAll() {
         socialService.deleteAll();
+    }
+
+    @PutMapping("/update/rate/hotel")
+    public void rateHotel(@RequestBody HotelDto hotelDto){
+
+      socialService.rateHotel(hotelMapper.toEntity(hotelDto));
     }
 }

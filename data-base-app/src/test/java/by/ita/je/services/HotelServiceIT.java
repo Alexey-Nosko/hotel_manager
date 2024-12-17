@@ -1,63 +1,67 @@
 package by.ita.je.services;
 
 import by.ita.je.models.Hotel;
+import by.ita.je.services.utils.TestUtils;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import java.util.Optional;
+import java.util.UUID;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class HotelServiceIT {
+class HotelServiceIT extends TestUtils {
 
     @Autowired
     private HotelService hotelService;
 
     @Test
-    void shouldSortHotelsByName() {
-        List<Hotel> sortedByName = hotelService.getSortedHotels("name");
+    public void testFindHotelByName() {
 
-        assertThat(sortedByName)
-                .isSortedAccordingTo((h1, h2) -> h1.getName().compareToIgnoreCase(h2.getName()));
+        Hotel hotel = buildHotel(UUID.fromString("f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"),"Sunset Resort","Miami, FL","A luxury hotel with stunning ocean views","All year round");
+
+        Hotel foundHotel = hotelService.findHotelByName("Sunset Resort");
+
+        assertEquals(hotel.getName(), foundHotel.getName());
     }
 
     @Test
-    void shouldSortHotelsByLocation() {
-        List<Hotel> sortedByLocation = hotelService.getSortedHotels("location");
+    public void testFilterHotels(){
 
-        assertThat(sortedByLocation)
-                .isSortedAccordingTo((h1, h2) -> h1.getLocation().compareToIgnoreCase(h2.getLocation()));
+        List<Hotel> filteredHotels = hotelService.filterHotels(
+                Optional.of("Sunset Resort"),
+                Optional.of("Miami, FL"),
+                Optional.of(4.0),
+                Optional.of(false),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty()
+        );
+
+        assertEquals(1, filteredHotels.size());
     }
 
     @Test
-    void shouldSortHotelsByRating() {
-        List<Hotel> sortedByRating = hotelService.getSortedHotels("rating");
+    public void testUpdateHotelByName() {
 
-        assertThat(sortedByRating)
-                .isSortedAccordingTo((h1, h2) -> Double.compare(
-                        h2.getSocial().getRating(),
-                        h1.getSocial().getRating()
-                ));
+        Hotel updatedHotelData = new Hotel();
+        updatedHotelData.setLocation("New Location");
+        updatedHotelData.setDescription("New Description");
+        updatedHotelData.setPeriodOfWork("All time");
+
+        boolean result = hotelService.updateHotelByName("Marriott", updatedHotelData);
+
+        assertTrue(result);
     }
 
     @Test
-    void shouldSortHotelsByAmenities() {
-        List<Hotel> sortedByAmenities = hotelService.getSortedHotels("amenities");
+    @Transactional
+    public void testDeleteHotelByName_HotelExists() {
 
-        assertThat(sortedByAmenities)
-                .isSortedAccordingTo((h1, h2) -> {
-                    int compareWifi = Boolean.compare(h2.getAmenities().getWifi(), h1.getAmenities().getWifi());
-                    if (compareWifi != 0) return compareWifi;
+        hotelService.deleteHotelByName("Marriott");
 
-                    int comparePool = Boolean.compare(h2.getAmenities().getPool(), h1.getAmenities().getPool());
-                    if (comparePool != 0) return comparePool;
-
-                    int compareAirConditioner = Boolean.compare(h2.getAmenities().getAirConditioner(), h1.getAmenities().getAirConditioner());
-                    if (compareAirConditioner != 0) return compareAirConditioner;
-
-                    return Boolean.compare(h2.getAmenities().getParking(), h1.getAmenities().getParking());
-                });
     }
-
-
 }

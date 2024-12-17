@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Removal of the hotel</title>
+</head>
+<body>
+<h1>Removal of the hotel</h1>
+<h2>Enter Hotel Name</h2>
+<form action="/hotel/get/delete" method="get">
+  <label for="name">Hotel Name:</label>
+  <input type="text" id="name" name="name" required>
+  <button type="submit">delete hotel</button>
+</form>
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>

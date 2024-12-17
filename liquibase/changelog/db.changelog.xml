@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="alexey">
+        <createTable tableName="HOTEL">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="period_of_work" type="VARCHAR(255)"/>
+            <column name="amenities_id" type="UUID"/>
+            <column name="social_id" type="UUID"/>
+        </createTable>
+
+        <createTable tableName="AMENITIES">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="wifi" type="BOOLEAN"/>
+            <column name="pool" type="BOOLEAN"/>
+            <column name="air_conditioner" type="BOOLEAN"/>
+            <column name="parking" type="BOOLEAN"/>
+            <column name="hotel_id" type="UUID">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="SOCIAL">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rating" type="DOUBLE PRECISION"/>
+            <column name="followers_count" type="INTEGER"/>
+            <column name="hotel_id" type="UUID">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="ROOM">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="room_number" type="INTEGER"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="price_per_night" type="INTEGER"/>
+            <column name="is_available" type="BOOLEAN"/>
+            <column name="hotel_id" type="UUID">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="BOOKING">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="check_in_date" type="DATE"/>
+            <column name="check_out_date" type="DATE"/>
+            <column name="room_id" type="UUID">
+                <constraints nullable="true"/>
+            </column>
+            <column name="profile_id" type="UUID"/>
+        </createTable>
+
+        <createTable tableName="PROFILE">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="login" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="balance" type="DOUBLE PRECISION"/>
+            <column name="hotel_id" type="UUID"/>
+            <column name="booking_id" type="UUID"/>
+        </createTable>
+
+        <createTable tableName="NOTIFICATION">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="profile_id" type="UUID">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="profile_favorite_hotels">
+            <column name="profile_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="favorite_hotels" type="UUID">
+                <constraints nullable="true" primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="AMENITIES" baseColumnNames="hotel_id"
+                                 constraintName="fk_amenities_hotel"
+                                 referencedTableName="HOTEL" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="SOCIAL" baseColumnNames="hotel_id"
+                                 constraintName="fk_social_hotel"
+                                 referencedTableName="HOTEL" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="ROOM" baseColumnNames="hotel_id"
+                                 constraintName="fk_room_hotel"
+                                 referencedTableName="HOTEL" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="BOOKING" baseColumnNames="room_id"
+                                 constraintName="fk_booking_room"
+                                 referencedTableName="ROOM" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="BOOKING" baseColumnNames="profile_id"
+                                 constraintName="fk_booking_profile"
+                                 referencedTableName="PROFILE" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="PROFILE" baseColumnNames="hotel_id"
+                                 constraintName="fk_profile_hotel"
+                                 referencedTableName="HOTEL" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="PROFILE" baseColumnNames="booking_id"
+                                 constraintName="fk_profile_booking"
+                                 referencedTableName="BOOKING" referencedColumnNames="id"
+                                 onDelete="SET NULL" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="NOTIFICATION" baseColumnNames="profile_id"
+                                 constraintName="fk_notification_profile"
+                                 referencedTableName="PROFILE" referencedColumnNames="id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="profile_favorite_hotels" baseColumnNames="profile_id"
+                                 constraintName="fk_profile_favorite_hotels_profile"
+                                 referencedTableName="PROFILE" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+    </changeSet>
+    <changeSet id="2" author="alexey">
+
+        <insert tableName="HOTEL">
+            <column name="id" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+            <column name="name" value="Sunset Resort"/>
+            <column name="location" value="Miami, FL"/>
+            <column name="description" value="A luxury hotel with stunning ocean views"/>
+            <column name="period_of_work" value="All year round"/>
+            <column name="amenities_id" value="NULL"/>
+            <column name="social_id" value="NULL"/>
+        </insert>
+
+        <insert tableName="HOTEL">
+            <column name="id" value="e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b"/>
+            <column name="name" value="Marriott"/>
+            <column name="location" value="Minsk, RB"/>
+            <column name="description" value="Hotel with exquisite rooms and excellent service"/>
+            <column name="period_of_work" value="All year round"/>
+            <column name="amenities_id" value="NULL"/>
+            <column name="social_id" value="NULL"/>
+        </insert>
+
+        <insert tableName="AMENITIES">
+            <column name="id" value="d7f7a8d3-56b7-47bb-9a57-1de1167a9cc0"/>
+            <column name="wifi" value="FALSE"/>
+            <column name="pool" value="TRUE"/>
+            <column name="air_conditioner" value="TRUE"/>
+            <column name="parking" value="TRUE"/>
+            <column name="hotel_id" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+        </insert>
+
+        <insert tableName="AMENITIES">
+            <column name="id" value="2f1c30a0-3e25-4ae4-b3aa-637b9eaa40f4"/>
+            <column name="wifi" value="TRUE"/>
+            <column name="pool" value="TRUE"/>
+            <column name="air_conditioner" value="TRUE"/>
+            <column name="parking" value="TRUE"/>
+            <column name="hotel_id" value="e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b"/>
+        </insert>
+
+        <insert tableName="SOCIAL">
+            <column name="id" value="44e3bbf8-81ec-46a9-88c3-9c9eb3d2d801"/>
+            <column name="rating" value="4.8"/>
+            <column name="followers_count" value="1"/>
+            <column name="hotel_id" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+        </insert>
+
+        <insert tableName="SOCIAL">
+            <column name="id" value="9b71214c-64da-4e3b-8bc6-c920e8f84e12"/>
+            <column name="rating" value="4.1"/>
+            <column name="followers_count" value="0"/>
+            <column name="hotel_id" value="e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b"/>
+        </insert>
+
+        <insert tableName="ROOM">
+            <column name="id" value="7f9d2d0e-6a2e-4ed9-b9a1-14ec7e1d0f40"/>
+            <column name="room_number" value="101"/>
+            <column name="type" value="Single"/>
+            <column name="price_per_night" value="150"/>
+            <column name="is_available" value="FALSE"/>
+            <column name="hotel_id" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+        </insert>
+
+        <insert tableName="ROOM">
+            <column name="id" value="32d24517-76a1-4c1c-9831-9d779c3a5a3a"/>
+            <column name="room_number" value="102"/>
+            <column name="type" value="Double"/>
+            <column name="price_per_night" value="250"/>
+            <column name="is_available" value="TRUE"/>
+            <column name="hotel_id" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+        </insert>
+
+        <insert tableName="BOOKING">
+            <column name="id" value="b5ac98f0-7d58-475e-913d-efb51fa9d52b"/>
+            <column name="check_in_date" value="2024-12-10"/>
+            <column name="check_out_date" value="2024-12-15"/>
+            <column name="room_id" value="7f9d2d0e-6a2e-4ed9-b9a1-14ec7e1d0f40"/>
+            <column name="profile_id" value="NULL"/>
+        </insert>
+
+        <insert tableName="PROFILE">
+            <column name="id" value="1e8a2c28-650b-4f92-9b13-8f79c4728f26"/>
+            <column name="role" value="ADMIN"/>
+            <column name="name" value="John Doe"/>
+            <column name="login" value="admin"/>
+            <column name="password" value="$2a$10$S7qPYhLmh/MwYgH7RM5cDupK19JtgQO6JvWNkjNdNYyf0Rz8PTGfy"/>
+            <column name="balance" value="NULL"/>
+            <column name="hotel_id" value="NULL"/>
+            <column name="booking_id" value="NULL"/>
+        </insert>
+
+        <insert tableName="PROFILE">
+            <column name="id" value="39ab36f5-7487-465d-bcc2-6f91a4b3e3f7"/>
+            <column name="role" value="MANAGER"/>
+            <column name="name" value="Alice Smith"/>
+            <column name="login" value="manag"/>
+            <column name="password" value="$2a$10$4nGnXjxifOBxXM7JxYD03ukSv9yvYwrDyd2yx8o9PmAh/gLEBeZnS"/>
+            <column name="balance" value="NULL"/>
+            <column name="hotel_id" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+            <column name="booking_id" value="NULL"/>
+        </insert>
+
+        <insert tableName="PROFILE">
+            <column name="id" value="d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de"/>
+            <column name="role" value="CLIENT"/>
+            <column name="name" value="Alex Nosko"/>
+            <column name="login" value="al"/>
+            <column name="password" value="$2a$10$xKW7Y6e95sFRDF2BIV1VaOh.CxLnfHJxuhQFcfFKlzRzsOr01f.2e"/>
+            <column name="balance" value="2000"/>
+            <column name="hotel_id" value="NULL"/>
+            <column name="booking_id" value="b5ac98f0-7d58-475e-913d-efb51fa9d52b"/>
+        </insert>
+
+        <insert tableName="profile_favorite_hotels">
+            <column name="profile_id" value="d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de"/>
+            <column name="favorite_hotels" value="f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6"/>
+        </insert>
+
+    </changeSet>
+    <changeSet id="3" author="alexey">
+
+        <update tableName="HOTEL">
+            <column name="amenities_id" value="d7f7a8d3-56b7-47bb-9a57-1de1167a9cc0"/>
+            <where>id = 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6'</where>
+        </update>
+
+        <update tableName="HOTEL">
+            <column name="social_id" value="44e3bbf8-81ec-46a9-88c3-9c9eb3d2d801"/>
+            <where>id = 'f6d00b2c-8ab6-49e6-910d-c55fa7d1f9a6'</where>
+        </update>
+
+        <update tableName="HOTEL">
+            <column name="amenities_id" value="2f1c30a0-3e25-4ae4-b3aa-637b9eaa40f4"/>
+            <where>id = 'e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b'</where>
+        </update>
+
+        <update tableName="HOTEL">
+            <column name="social_id" value="9b71214c-64da-4e3b-8bc6-c920e8f84e12"/>
+            <where>id = 'e8a3c5b7-7c1e-4f9a-ae8b-9c7f4e8d6a7b'</where>
+        </update>
+
+        <update tableName="BOOKING">
+            <column name="profile_id" value="d9d2e0a5-8cf4-44bc-8a35-c11abf5a50de"/>
+            <where>id = 'b5ac98f0-7d58-475e-913d-efb51fa9d52b'</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

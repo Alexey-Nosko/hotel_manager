@@ -29,6 +29,8 @@ public class Profile {
     private String login;
     @Column(name = "password")
     private String password;
+    @Column(name = "balance")
+    private Double balance;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = true)

@@ -9,6 +9,7 @@ import by.ita.je.services.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -70,13 +71,36 @@ public class HotelController {
         hotelService.deleteAll();
     }
 
-    @GetMapping("/read/all/sorted")
-    public List<HotelDto> getSortedHotels(@RequestParam(defaultValue = "name") String sortBy) {
-
-        List<Hotel> hotels = hotelService.getSortedHotels(sortBy);
-
-        return hotels.stream()
+    @GetMapping("/hotels/filter")
+    public List<HotelDto> filterHotels(
+            @RequestParam Optional<String> name,
+            @RequestParam Optional<String> location,
+            @RequestParam Optional<Double> minRating,
+            @RequestParam Optional<Boolean> wifi,
+            @RequestParam Optional<Boolean> pool,
+            @RequestParam Optional<Boolean> airConditioner,
+            @RequestParam Optional<Boolean> parking
+    ) {
+        return hotelService.filterHotels(name, location, minRating, wifi, pool,airConditioner,parking)
+                .stream()
                 .map(hotelMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    @GetMapping("/find/by/name")
+    public HotelDto findHotelByName(@RequestParam String name){
+        return hotelMapper.toDto(hotelService.findHotelByName(name));
+    }
+
+    @PutMapping("/update/by/name")
+    public Boolean updateHotelByName(@RequestParam String name,
+                                     @RequestBody HotelDto hotelDto){
+
+        return hotelService.updateHotelByName(name,hotelMapper.toEntity(hotelDto));
+    }
+
+    @DeleteMapping("/delete/by/name")
+    public void deleteHotelByName(@RequestParam String name) {
+        hotelService.deleteHotelByName(name);
     }
 }

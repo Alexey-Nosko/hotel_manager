@@ -16,5 +16,5 @@ public class Social {
 
     private Double rating;
 
-    private Long followersCount;
+    private Integer followersCount;
 }

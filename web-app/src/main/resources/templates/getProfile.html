@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Page</title>
+</head>
+<body>
+<h1>Profile Details</h1>
+
+<div>
+  <h2>Role</h2>
+  <p th:text="${profile.role}">Role</p>
+</div>
+
+<div>
+  <h2>Name</h2>
+  <p th:text="${profile.name}">Name</p>
+</div>
+
+<div>
+  <h2>Login</h2>
+  <p th:text="${profile.login}">Login</p>
+</div>
+
+<div>
+  <h2>Balance</h2>
+  <p th:text="${profile.balance}">Balance</p>
+</div>
+
+<div>
+  <h2>Notifications</h2>
+  <ul>
+    <li th:each="notification : ${profile.notifications}">
+      <p th:text="${notification.message}">Notification Message</p>
+    </li>
+  </ul>
+</div>
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>

@@ -5,6 +5,7 @@ import by.ita.je.models.Room;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,9 +22,10 @@ public class RoomMapper {
                 .type(room.getType())
                 .pricePerNight(room.getPricePerNight())
                 .isAvailable(room.getIsAvailable())
-                .bookingsDto(room.getBookings().stream()
-                        .map(bookingMapper::toDto)
-                        .collect(Collectors.toList()))
+                .bookingsDto(room.getBookings() != null ?
+                        room.getBookings().stream()
+                                .map(bookingMapper::toDto)
+                                .collect(Collectors.toList()) : Collections.emptyList())
                 .build();
     }
 
@@ -35,9 +37,10 @@ public class RoomMapper {
                 .type(dto.getType())
                 .pricePerNight(dto.getPricePerNight())
                 .isAvailable(dto.getIsAvailable())
-                .bookings(dto.getBookingsDto().stream()
-                        .map(bookingMapper::toEntity)
-                        .collect(Collectors.toList()))
+                .bookings(dto.getBookingsDto() != null ?
+                        dto.getBookingsDto().stream()
+                                .map(bookingMapper::toEntity)
+                                .collect(Collectors.toList()) : Collections.emptyList())
                 .build();
     }
 }

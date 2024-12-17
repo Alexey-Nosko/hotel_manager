@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changing the configuration of the hotel room</title>
+</head>
+<body>
+
+<h2>Changing the configuration of the hotel room</h2>
+<form action="/hotel/get/change/configuration" method="get">
+
+  <label for="name">Hotel Name</label><br>
+  <input type="text" id="name" name="name" placeholder="Enter hotel name" required><br><br>
+
+  <label for="roomNumber">Room Number</label><br>
+  <input type="number" id="roomNumber" name="roomNumber" placeholder="Enter room number" required><br><br>
+
+  <label for="roomType">Room Type</label><br>
+  <select id="roomType" name="type" required>
+    <option value="Single">Single</option>
+    <option value="Double">Double</option>
+  </select><br>
+
+  <label for="pricePerNight">Price Per Night</label><br>
+  <input type="number" id="pricePerNight" name="pricePerNight" placeholder="Enter price per night" required><br><br>
+
+  <button type="submit">Save Changes</button>
+</form>
+<a href="/hotel/start">Back to home page</a>
+</body>
+</html>
