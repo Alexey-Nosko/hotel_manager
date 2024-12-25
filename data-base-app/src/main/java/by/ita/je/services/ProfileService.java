@@ -17,6 +17,7 @@ public class ProfileService {
 
     public Profile create(Profile profile) {
 
+        profile.setBalance(0.0);
         return profileRepository.save(profile);
     }
 
